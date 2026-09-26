@@ -8,12 +8,9 @@ import androidx.core.net.toUri
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //get URI from intent
-        val incomingUri = intent.data ?: return
-        //get affiliate URL from incoming URI
-        val affiliatelink = incomingUri.getQueryParameter("url") ?: return
-        // Open affiliate URL with the default Android handler
-        val amazonUri = affiliatelink.toUri()
+
+        val affiliateUrl = "https://www.amazon.com/dp/B0D4YMYZB1?ref=ppx_yo2ov_dt_b_fed_asin_title&tag=baltimorehack-20"
+        val amazonUri = affiliateUrl.toUri()
         val openAmazonIntent = Intent(Intent.ACTION_VIEW, amazonUri)
         startActivity(openAmazonIntent)
         finish()
