@@ -14,3 +14,8 @@
 .cxx
 local.properties
 /.idea/
+
+*.p12
+*.jks
+*.keystore
+keystore.properties
