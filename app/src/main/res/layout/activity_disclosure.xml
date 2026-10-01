@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="28dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="28dp"
+        android:paddingBottom="48dp">
+
+        <ImageView
+            android:id="@+id/bahaLogo"
+            android:layout_width="105dp"
+            android:layout_height="105dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Baltimore Hackerspace logo"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Affiliate Link Disclosure"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="BaHaAmazon opens Amazon product links using the Baltimore Hackerspace affiliate tag.&#10;&#10;Purchases made through these links may generate a commission for Baltimore Hackerspace at no additional cost to you. Once you opt in, the affiliate tag may apply to eligible purchases made during that Amazon shopping session.&#10;&#10;As an Amazon Associate, BaHa earns from qualifying purchases.&#10;&#10;You only need to opt in once."
+            android:textColor="#E0E0E0"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/optInButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#39FF14"
+            android:text="OPT IN AND CONTINUE"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/exitButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#424242"
+            android:text="EXIT WITHOUT OPTING IN"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>
