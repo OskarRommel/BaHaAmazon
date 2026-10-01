@@ -1,17 +1,44 @@
 package org.baltimorehackspace.bahaamazon
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
+import org.json.JSONArray
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val affiliateUrl = "https://www.amazon.com/dp/B0D4YMYZB1?ref=ppx_yo2ov_dt_b_fed_asin_title&tag=baltimorehack-20"
-        val amazonUri = affiliateUrl.toUri()
+        val asin = try {
+            val json = assets.open("asins.json")
+                .bufferedReader()
+                .use { it.readText() }
+
+            val jsonArray = JSONArray(json)
+
+            if (jsonArray.length() > 0) {
+                jsonArray
+                    .getString(Random.nextInt(jsonArray.length()))
+                    .trim()
+            } else {
+                "B0D4YMYZB1"
+            }
+        } catch (_: Exception) {
+            "B0D4YMYZB1"
+        }
+
+        val amazonUri = Uri.Builder()
+            .scheme("https")
+            .authority("www.amazon.com")
+            .path("dp/$asin")
+            .appendQueryParameter("tag", "baltimorehack-20")
+            .build()
+
         val openAmazonIntent = Intent(Intent.ACTION_VIEW, amazonUri)
+
         startActivity(openAmazonIntent)
         finish()
     }
