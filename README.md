@@ -66,4 +66,4 @@ Error handling is included in v1.2 and will be verified during beta testing. The
 
 ## Beta APK
 
-The [v1.2 beta APK](releases/BaHaAmazon-v1.2-beta-debug.apk) is included for testing. This is the debug build that was installed and checked on the phone.
+The [v1.2 beta APK](releases/BaHaAmazon-v1.2-beta.apk) is a signed release build included for beta testing. The app flow was checked on the phone using the debug build; this signed release APK still needs its own device check.
