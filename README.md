@@ -63,3 +63,7 @@ The list can be refreshed as products disappear or new gear gets added.
 **v1.2 beta builds and runs on a Samsung Galaxy S24+.** Gear Shuffle waits for **SEND IT!**, then opens Amazon as expected. That flow has been confirmed on the phone.
 
 Error handling is included in v1.2 and will be verified during beta testing. The existing unit test and Android lint checks pass. Device regression tests compile, but haven't been run on the phone yet. Clean-install opt-in and upgrade behavior still need verification for v1.2.
+
+## Beta APK
+
+The [v1.2 beta APK](releases/BaHaAmazon-v1.2-beta-debug.apk) is included for testing. This is the debug build that was installed and checked on the phone.
