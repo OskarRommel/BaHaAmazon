@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BaHa Amazon</string>
+    <string name="gear_shuffle_title">Hackerspace Gear Shuffle</string>
+    <string name="affiliate_disclosure">As an Amazon Associate, BaHa earns from qualifying purchases. Links support Baltimore Hackerspace at no additional cost to you.</string>
+    <string name="send_it">SEND IT!</string>
+    <string name="send_it_subtitle">Open a random Amazon product</string>
+    <string name="amazon_unavailable">No app can open Amazon links. Please install a browser and try again.</string>
+    <string name="amazon_launch_blocked">Amazon launch was unsuccessful. Android blocked the link. Please try again.</string>
+    <string name="amazon_launch_unsuccessful">Amazon launch was unsuccessful</string>
+    <string name="amazon_retry_message">Amazon could not be opened after three or more attempts. Check that a browser or the Amazon app is installed and enabled. You can tap SEND IT! to try again.</string>
 </resources>

@@ -1,9 +1,12 @@
 package org.baltimorehackspace.bahaamazon
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import org.json.JSONArray
@@ -11,8 +14,11 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private var failedHandoffs = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        failedHandoffs = savedInstanceState?.getInt("failed_handoffs", 0) ?: 0
 
         // Show the disclosure until they opt in once.
         val prefs = getSharedPreferences("baha_prefs", MODE_PRIVATE)
@@ -29,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     putBoolean("affiliate_opt_in", true)
                 }
 
-                openAmazon()
+                showGearShuffle()
             }
 
             exitButton.setOnClickListener {
@@ -39,7 +45,52 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        openAmazon()
+        showGearShuffle()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("failed_handoffs", failedHandoffs)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        // Incoming data never authorizes an affiliate handoff.
+        if (getSharedPreferences("baha_prefs", MODE_PRIVATE)
+                .getBoolean("affiliate_opt_in", false)) {
+            showGearShuffle()
+        }
+    }
+
+    private fun showGearShuffle() {
+        setContentView(R.layout.activity_main)
+        findViewById<Button>(R.id.sendItButton).setOnClickListener { button ->
+            button.isEnabled = false
+            try {
+                openAmazon()
+            } catch (_: ActivityNotFoundException) {
+                button.isEnabled = true
+                showHandoffError(R.string.amazon_unavailable)
+            } catch (_: SecurityException) {
+                button.isEnabled = true
+                showHandoffError(R.string.amazon_launch_blocked)
+            }
+        }
+    }
+
+    private fun showHandoffError(message: Int) {
+        // Count failed explicit taps; retries remain available indefinitely.
+        failedHandoffs = (failedHandoffs + 1).coerceAtMost(3)
+        if (failedHandoffs >= 3) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.amazon_launch_unsuccessful)
+                .setMessage(R.string.amazon_retry_message)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        } else {
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun openAmazon() {
