@@ -20,6 +20,6 @@ local.properties
 *.keystore
 keystore.properties
 
-# Local Codex build caches and Android settings
+# Local build caches and Android settings
 /.gradle-user-home/
 /.android-build/
